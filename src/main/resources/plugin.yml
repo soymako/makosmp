@@ -1,0 +1,49 @@
+name: msmp
+version: '${project.version}'
+main: me.soymako.makosmp.Main
+api-version: '1.21'
+
+commands:
+  change_welcome_message:
+    description: changes the welcome message
+    aliases:
+      - cwm
+  register:
+    description: registers to the server
+    aliases:
+      - r
+  login:
+    description: logs to the server
+    aliases:
+      - l
+  home:
+    description: te lleva a tu casa
+  sethome:
+    description: guarda la casa del jugador
+    aliases:
+      - sh
+  bloquear:
+    description: bloquea a una lista de jugadores
+  desbloquear:
+    description: desbloquea a jugadores que hayas bloqueado anteriormente
+  prefijo:
+    description: cambia tu prefijo en el chat
+  set-max-homes:
+    description: cambia el limite de casas que puede tener  un jugador
+  dinero:
+    description: te muestra el dinero que tienes
+  estadisticas:
+    description: muestra las estadisticas de jugadores
+    aliases:
+      - stats
+      - statistics
+      - estats
+      - estadísticas
+  vanish:
+    description: oculta / muestra al usuario
+    aliases:
+      - v
+  teleport:
+    description: te teletransporta a un jugador
+    aliases:
+      - teletransportar

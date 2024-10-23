@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="makosmp:jar">
+    <output-path>$PROJECT_DIR$/../../../Minecraft Servers/msmp/plugins</output-path>
+    <root id="archive" name="makosmp.jar">
+      <element id="module-output" name="makosmp" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk8/2.0.21/kotlin-stdlib-jdk8-2.0.21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/2.0.21/kotlin-stdlib-2.0.21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk7/2.0.21/kotlin-stdlib-jdk7-2.0.21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/me/soymako/MakoMC/1.0/MakoMC-1.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
