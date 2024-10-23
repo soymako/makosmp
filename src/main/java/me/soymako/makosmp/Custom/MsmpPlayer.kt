@@ -158,6 +158,7 @@ class MsmpPlayer(val player: Player) {
 
     fun setVanishLogic(show:Boolean){
         player.isGlowing = show
+        player.allowFlight = show
         if (show){
             for (p in Bukkit.getOnlinePlayers()){
                 p.hidePlayer(Main.instance!!, player)

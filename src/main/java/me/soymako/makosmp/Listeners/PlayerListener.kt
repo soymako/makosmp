@@ -21,6 +21,7 @@ class PlayerListener : Listener {
     fun onPlayerJoined(e:PlayerJoinEvent){
         var player:MsmpPlayer = MsmpPlayer(e.player)
         player.auth()
+        player.setVanishLogic(player.vanish)
     }
 
     @EventHandler
