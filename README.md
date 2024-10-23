@@ -2,11 +2,11 @@
 
 **Requisitos:**
 - openjdk 21.0.4 (2024-07-16 LTS)
-- Kotlin / Java (preferentemente Kotlin por su sencillez)
+- Kotlin / Java (preferentemente Kotlin por su facilidad)
 
 **Descripción:**
-Este proyecto permite la programación en ambos lenguajes, aunque se sugiere el uso de Kotlin
-debido a lo sencillo que es.
+Este proyecto es para el MSMP, servidor survival multijugador personalizado de Minecraft creado por SoyMako
+https://youtube.com/soymako
 
 Este proyecyo de Minecraft compila a Paper, se recomienda usar IntelliJ.
 Aunque si quieres puedes usar VSCode, Eclipse o NetBeans (si es que puedes o sabes configurar el proyecto correctamente)
