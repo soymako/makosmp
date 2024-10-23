@@ -107,6 +107,11 @@
           <id>sonatype</id>
           <url>https://oss.sonatype.org/content/groups/public/</url>
       </repository>
+      <repository>
+          <id>jitpack.io</id>
+          <url>https://jitpack.io</url>
+      </repository>
+
   </repositories>
 
   <dependencies>
@@ -127,10 +132,16 @@
           <version>${kotlin.version}</version>
           <scope>test</scope>
       </dependency>
+<!--      <dependency>-->
+<!--          <groupId>me.soymako</groupId>-->
+<!--          <artifactId>MakoMC</artifactId>-->
+<!--          <version>1.0</version>-->
+<!--      </dependency>-->
       <dependency>
-          <groupId>me.soymako</groupId>
+          <groupId>com.github.soymako</groupId>
           <artifactId>MakoMC</artifactId>
-          <version>1.0</version>
+          <version>main-SNAPSHOT</version>
       </dependency>
+
   </dependencies>
 </project>
