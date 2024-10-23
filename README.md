@@ -4,6 +4,7 @@
 - openjdk 21.0.4 (2024-07-16 LTS)
 - Kotlin / Java (preferentemente Kotlin por su facilidad)
 - IntelliJ IDEA Community 2024
+- Maven
  
 
 **Dependencias**
