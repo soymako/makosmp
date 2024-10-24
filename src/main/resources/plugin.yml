@@ -2,6 +2,8 @@ name: msmp
 version: '${project.version}'
 main: me.soymako.makosmp.Main
 api-version: '1.21'
+softdepend: [ProtocolLib]
+
 
 commands:
   change_welcome_message:
@@ -47,3 +49,5 @@ commands:
     description: te teletransporta a un jugador
     aliases:
       - teletransportar
+  rank:
+    description: gives rank to a player

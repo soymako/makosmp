@@ -10,7 +10,7 @@ class Vanish : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (sender is Player){
             var player = MsmpPlayer(sender)
-            if (player.player.isOp){
+            if (player.player.isOp || player.permissionLevel >= 10){
                 player.vanish = !player.vanish
             }
         }

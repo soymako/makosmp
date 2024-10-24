@@ -3,6 +3,8 @@ package me.soymako.makosmp.Custom
 import me.soymako.makomc.Chat
 import me.soymako.makosmp.Events.ChatColorsObtained
 import me.soymako.makosmp.Main
+import me.soymako.makosmp.Types.Rank
+import me.soymako.makosmp.Types.Ranks
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.Bukkit
@@ -17,6 +19,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class MsmpPlayer(val player: Player) {
+
 
     private var formatter: NumberFormat = NumberFormat.getNumberInstance(Locale.US).apply {
         minimumFractionDigits = 2
@@ -44,6 +47,8 @@ class MsmpPlayer(val player: Player) {
 
         var vanish = NamespacedKey(Main.instance!!, "vanish")
         var fly = NamespacedKey(Main.instance!!, "fly")
+
+        val robando = NamespacedKey(Main.instance!!, "robando")
     }
 
     var canMove:Boolean
@@ -159,6 +164,7 @@ class MsmpPlayer(val player: Player) {
     fun setVanishLogic(show:Boolean){
         player.isGlowing = show
         player.allowFlight = show
+        player.isCollidable = show
         if (show){
             for (p in Bukkit.getOnlinePlayers()){
                 p.hidePlayer(Main.instance!!, player)
@@ -180,6 +186,44 @@ class MsmpPlayer(val player: Player) {
             dc.set(Namespaces().fly, PersistentDataType.BOOLEAN, value)
             player.allowFlight = value
 //            Chat().succes(player, "Volar: $value", true)
+        }
+
+    var permissionLevel: Int
+        get() = Main.playerData.data?.getInt("$name.permission_level") ?: 0
+        set(value) {
+            Main.playerData.data?.set("$name.permission_level", value)
+            Main.playerData.saveData()
+        }
+
+
+    var rank: Ranks
+        get() {
+            val r = Main.playerData.data!!.getObject("$name.rank", Rank::class.java) ?: Ranks.USUARIO as Rank
+            return Ranks.valueOf(r.name)
+        }
+        set(value) {
+            var r = Rank(value.name, value.permissionLevel, value.displayName)
+            Main.playerData.data!!.set("$name.rank", r)
+            Main.playerData.saveData()
+        }
+
+    var atracante: MsmpPlayer?
+        get() {
+            return dc.get(Namespaces().robando, PersistentDataType.STRING)?.let {
+                val player = Bukkit.getPlayer(it)
+                if (player != null) {
+                    MsmpPlayer(player)
+                } else {
+                    null
+                }
+            }
+        }
+        set(value) {
+            if (value == null){
+                dc.remove(Namespaces().robando)
+                return
+            }
+            dc.set(Namespaces().robando, PersistentDataType.STRING, value.player.name)
         }
 
 

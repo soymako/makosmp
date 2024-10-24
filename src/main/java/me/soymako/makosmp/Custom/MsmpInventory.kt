@@ -1,33 +1,38 @@
-package me.soymako.makosmp.Custom
-
-import me.soymako.makosmp.Events.InventoryClicked
+import me.soymako.makomc.Chat
+import me.soymako.makosmp.Custom.MsmpPlayer
 import me.soymako.makosmp.Main
 import org.bukkit.Bukkit
-import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.inventory.Inventory
 
-class MsmpInventory(var owner: MsmpPlayer, var size:Int, var name:String, var allowMovement:Boolean) : Listener {
+class MsmpInventory(
+    val owner: MsmpPlayer,
+    val size: Int,
+    val name: String,
+    var allowMovement: Boolean = true, // Por defecto permite movimiento
+    var customData: MutableMap<String, Any?> = mutableMapOf() // Aquí puedes meter más datos si lo necesitas
+) {
 
-    var inventory = Bukkit.createInventory(owner.player, size, name)
+    var inventory: Inventory = Bukkit.createInventory(owner.player, size, Chat().translate(name))
 
-    init {
-
-        Bukkit.getServer().pluginManager.registerEvents(this, Main.instance!!)
-    }
-
-    fun open(){
+    fun open() {
+        Main.inventarios[owner.player] = this
         owner.player.openInventory(inventory)
     }
 
+    fun close() {
+        owner.player.closeInventory()
+        Main.inventarios.remove(owner.player)
+        // Aquí puedes añadir lógica extra si lo necesitas, como limpiar el inventario
+    }
 
-    @EventHandler
-    fun onInventoryClick(e:InventoryClickEvent){
-        var inventoryClicked = InventoryClicked(player = owner, itemStack = e.currentItem, this, mcEvent = e)
-        Bukkit.getPluginManager().callEvent(inventoryClicked)
-        if (e.inventory == this.inventory && !allowMovement){
-            e.isCancelled = true
-        }
+    // Método para añadir datos personalizados
+    fun addCustomData(key: String, value: Any?) {
+        customData[key] = value
+    }
+
+    // Método para obtener datos personalizados
+    fun getCustomData(key: String): Any? {
+        return customData[key]
     }
 
 }

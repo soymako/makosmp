@@ -1,8 +1,8 @@
 package me.soymako.makosmp
 
+import MsmpInventory
 import me.soymako.makomc.Chat
 import me.soymako.makosmp.Custom.MsmpPlayer
-import me.soymako.makosmp.Custom.MsmpInventory
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
@@ -18,7 +18,7 @@ class Inventories {
 
     fun statsInventory(player:MsmpPlayer, target:MsmpPlayer){
 //        var inventario:MsmpInventory = Bukkit.createInventory(player.player, 9*2, "Estadísticas de ${target.fullName}")
-        var inventario: MsmpInventory = MsmpInventory(player, 9*2, "Estadísticas de ${target.fullName}", false)
+        var inventario = MsmpInventory(player, 9*2, "Estadísticas de ${target.fullName}", false)
 
 
         var content = arrayOfNulls<ItemStack>(18)
@@ -40,7 +40,7 @@ class Inventories {
         content[11] = deaths
         content[12] = kdr
 
-        inventario.inventory.contents = content
+        inventario.inventory!!.contents = content
         inventario.open()
     }
 
