@@ -43,15 +43,21 @@ public final class ProtocolLibHook {
                         packet?.let {
                             val stringMessage = packet.strings.read(0)
                             stringMessage?.let {
+                                var newMessage: String = "null"
+                                val rank:String = Chat().translate(player.rank.displayName)
+                                val prefijo:String = Chat().translate(player.chatNamePrefix)
                                 if (player.chatColors || player.player.isOp || player.permissionLevel >= Ranks.HELPER.permissionLevel){
-                                    val newMessage: String = Chat().translate("${player.rank.displayName}&r ${player.chatNamePrefix} ${player.name} ⏵ $stringMessage")
-                                    event.isCancelled = true
-                                    for (p in Bukkit.getOnlinePlayers()){
-                                        if (!Main.playerData.hasPlayerBlocked(p.name, player.name)) {
-                                                p.sendMessage(newMessage)
-                                        }
+                                    newMessage = "$rank&r $prefijo ${player.name} ⏵ ${Chat().translate(stringMessage)}"
+                                }
+                                else{
+                                    newMessage = "$rank&r $prefijo ${player.name} ⏵ $stringMessage"
+                                }
+                                for (p in Bukkit.getOnlinePlayers()){
+                                    if (!Main.playerData.hasPlayerBlocked(p.name, player.name)) {
+                                        p.sendMessage(newMessage)
                                     }
                                 }
+                                event.isCancelled = true
                             }
                         }
                     }

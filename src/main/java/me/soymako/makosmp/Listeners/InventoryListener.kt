@@ -17,15 +17,18 @@ class InventoryListener : Listener {
 
     @EventHandler
     fun onInventoryClicked(e:InventoryClickEvent){
-        val p = e.whoClicked as? Player ?: null
+        val p = e.whoClicked as? Player ?: return
+        val item = e.currentItem
+        val inv = Main.inventarios[p] ?: return
 
-        val inv = Main.inventarios[p]
+        e.isCancelled = !inv.allowMovement
 
-        inv.let {
-//            Bukkit.broadcastMessage("inventario: ${inv?.name}")
-            e.isCancelled = !it!!.allowMovement
+        e.currentItem?.let { item ->
+            //si el item existe
         }
-//        var player:MsmpPlayer = e.player
+    }
+
+    //        var player:MsmpPlayer = e.player
 //        var inv: MsmpInventory = e.msmpInventory
 //        var event = e.mcEvent
 //
@@ -33,7 +36,6 @@ class InventoryListener : Listener {
 //            it!!.player.world.playSound(it!!.player.location, Sound.ENTITY_PLAYER_ATTACK_NODAMAGE, SoundCategory.PLAYERS, 1f,1f)
 //            it!!.player.world.playSound(it!!.player.location, Sound.ENTITY_PLAYER_ATTACK_WEAK, SoundCategory.PLAYERS, .5f,.5f)
 //        }
-    }
 
     @EventHandler
     fun onInventoryClosed(e:InventoryCloseEvent){
